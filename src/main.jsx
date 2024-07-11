@@ -9,7 +9,10 @@ WebApp.ready();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <TonConnectUIProvider manifestUrl="https://gyloong.github.io/ton-test/manifest.json">
+    <TonConnectUIProvider
+      manifestUrl="https://gyloong.github.io/ton-test/manifest.json"
+      actionsConfiguration={{ twaReturnUrl: "https://t.me/yoloTonBot/myapp" }}
+    >
       <App />
     </TonConnectUIProvider>
   </React.StrictMode>

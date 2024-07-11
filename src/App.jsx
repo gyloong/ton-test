@@ -1,32 +1,63 @@
-import { useState } from "react";
-import WebApp from "@twa-dev/sdk";
-import { TonConnectButton } from "@tonconnect/ui-react";
+import {
+  TonConnectButton,
+  useTonAddress,
+  useTonWallet,
+  useTonConnectUI,
+} from "@tonconnect/ui-react";
 import "./App.css";
 
+const transaction = {
+  messages: [
+    {
+      address:
+        "0:412410771DA82CBA306A55FA9E0D43C9D245E38133CB58F1457DFB8D5CD8892F", // destination address
+      amount: "20000000", //Toncoin in nanotons
+    },
+  ],
+};
 function App() {
-  const [count, setCount] = useState(0);
+  const userFriendlyAddress = useTonAddress();
+  const rawAddress = useTonAddress(false);
+  const wallet = useTonWallet();
+  const [tonConnectUI, setOptions] = useTonConnectUI();
 
+  const onLanguageChange = (lang) => {
+    setOptions({ language: lang });
+  };
   return (
     <div>
       <header className="flex justify-end">
         <TonConnectButton />
       </header>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div>
+        {userFriendlyAddress && (
+          <div>
+            <span>User-friendly address: {userFriendlyAddress}</span>
+            <span>Raw address: {rawAddress}</span>
+          </div>
+        )}
       </div>
-      <div className="card">
-        <button
-          onClick={() =>
-            WebApp.showAlert(`Hello World! Current count is ${count}`)
-          }
-        >
-          显示警告
-        </button>
+      {wallet && (
+        <div>
+          <span>Connected wallet: {wallet.name}</span>
+          <span>Device: {wallet.device.appName}</span>
+        </div>
+      )}
+
+      <div>
+        <div>
+          <button onClick={() => tonConnectUI.sendTransaction(transaction)}>
+            Send transaction
+          </button>
+        </div>
+
+        <div>
+          <label>language</label>
+          <select onChange={(e) => onLanguageChange(e.target.value)}>
+            <option value="en">en</option>
+            <option value="ru">ru</option>
+          </select>
+        </div>
       </div>
     </div>
   );
