@@ -4,7 +4,7 @@ name: 将静态内容部署到页面
 on:
   # 针对默认分支的推送上运行
   push:
-    branches: ["main"]
+    branches: ['main']
 
   # 允许您从操作选项卡手动运行此工作流
   workflow_dispatch:
@@ -17,7 +17,7 @@ permissions:
 
 # 允许一个并行部署
 concurrency:
-  group: "页面"
+  group: '页面'
   cancel-in-progress: true
 
 jobs:
@@ -33,9 +33,9 @@ jobs:
       - name: 设置 Node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
-          cache: "npm"
-          cache-dependency-path: "./"
+          node-version: 18
+          cache: 'npm'
+          cache-dependency-path: './'
       - name: 安装依赖
         run: npm install
       - name: 构建
@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # 上传 dist 库
-          path: "./docs"
+          path: './docs'
       - name: 部署到 GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
