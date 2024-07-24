@@ -4,8 +4,10 @@ import App from "./App.jsx";
 import "./index.css";
 import WebApp from "@twa-dev/sdk";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
+import eruda from "eruda";
 
 // 调用 WebApp.ready() 并添加日志
+eruda.init();
 WebApp.ready();
 console.log("WebApp.ready() called");
 
