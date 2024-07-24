@@ -5,7 +5,19 @@ import "./index.css";
 import WebApp from "@twa-dev/sdk";
 import { TonConnectUIProvider } from "@tonconnect/ui-react";
 
+// 调用 WebApp.ready() 并添加日志
 WebApp.ready();
+console.log("WebApp.ready() called");
+
+// 打印 WebApp.initDataUnsafe
+console.log("WebApp.initDataUnsafe =>", WebApp.initDataUnsafe);
+
+// 检查 WebApp.initDataUnsafe 是否有数据
+if (WebApp.initDataUnsafe) {
+  console.log("User info:", WebApp.initDataUnsafe);
+} else {
+  console.error("WebApp.initDataUnsafe is empty");
+}
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
