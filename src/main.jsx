@@ -11,6 +11,7 @@ eruda.init();
 WebApp.ready();
 console.log("WebApp.ready() called");
 
+console.log("WebApp data =>", WebApp);
 // 打印 WebApp.initDataUnsafe
 console.log("WebApp.initDataUnsafe =>", WebApp.initDataUnsafe);
 
