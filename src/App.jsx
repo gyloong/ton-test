@@ -15,7 +15,27 @@ const transaction = {
     },
   ],
 };
+
+const handleShare = () => {
+  // Ensure WebApp SDK is ready
+  if (window.Telegram && window.Telegram.WebApp) {
+    window.Telegram.WebApp.sendMessage({
+      text: "这里是你要分享的消息内容",
+    });
+  }
+};
+
 function App() {
+  // 获取当前页面的 URL
+  const url = new URL(window.location.href);
+
+  // 创建 URLSearchParams 对象
+  const params = new URLSearchParams(url.search);
+
+  // 获取参数值
+  const startappParam = params.get("startapp");
+  console.log("startappParam ===>", startappParam);
+
   const userFriendlyAddress = useTonAddress();
   const rawAddress = useTonAddress(false);
   const wallet = useTonWallet();
@@ -59,6 +79,7 @@ function App() {
           </select>
         </div>
       </div>
+      <button onClick={handleShare}>分享消息</button>
     </div>
   );
 }
