@@ -16,14 +16,6 @@ const transaction = {
   ],
 };
 
-const handleShare = () => {
-  // Ensure WebApp SDK is ready
-  if (window.Telegram && window.Telegram.WebApp) {
-    window.Telegram.WebApp.sendMessage({
-      text: "这里是你要分享的消息内容",
-    });
-  }
-};
 
 function App() {
   // 获取当前页面的 URL
@@ -79,7 +71,6 @@ function App() {
           </select>
         </div>
       </div>
-      <button onClick={handleShare}>分享消息</button>
     </div>
   );
 }

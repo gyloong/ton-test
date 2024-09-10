@@ -21,6 +21,7 @@ if (WebApp.initDataUnsafe) {
 } else {
   console.error("WebApp.initDataUnsafe is empty");
 }
+WebApp.backgroundColor = "#f1b5b5";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
